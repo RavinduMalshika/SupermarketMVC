@@ -4,17 +4,29 @@
  */
 package supermarket.mvc.view;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import supermarket.mvc.controller.ItemController;
+import supermarket.mvc.model.ItemModel;
+
 
 /**
  *
  * @author ravin
  */
 public class ItemView extends javax.swing.JFrame {
+    private ItemController itemController;
     /**
      * Creates new form CustomerView
      */
     public ItemView() {
+        itemController = new ItemController();
         initComponents();
+        loadAllItems();
     }
 
     /**
@@ -237,7 +249,7 @@ public class ItemView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSaveBtnActionPerformed
-        
+        saveItem();
     }//GEN-LAST:event_itemSaveBtnActionPerformed
 
     private void itemTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTableMouseClicked
@@ -277,6 +289,54 @@ public class ItemView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel tablePanel;
     // End of variables declaration//GEN-END:variables
-
+    
+    private void saveItem() {
+        ItemModel item = new ItemModel(itemCodeField.getText(), 
+                itemDescField.getText(), 
+                itemPackSizeField.getText(), 
+                Double.valueOf(itemUnitPriceField.getText()), 
+                Integer.valueOf(itemQtyOnHandField.getText()));
+        
+        try {
+            String resp = itemController.saveItem(item);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+            loadAllItems();
+        } catch (SQLException ex) {
+            Logger.getLogger(ItemView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        
+    }
    
+    private void clear() {
+        itemCodeField.setText("");
+        itemDescField.setText("");
+        itemPackSizeField.setText("");
+        itemUnitPriceField.setText("");
+        itemQtyOnHandField.setText("");
+    }
+    
+    private void loadAllItems() {
+        try {
+            String [] columns = {"Item Code", "Description", "Unit Price", "Quatity on Hand"};
+            DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            itemTable.setModel(dtm);
+            
+            ArrayList<ItemModel> items = itemController.getAllItems();
+            
+            for (ItemModel item : items) {
+                Object [] rowData = {item.getItemCode(), item.getItemDesc() + ", " + item.getPackSize(), item.getUnitPrice(), item.getQtyOnHand()};
+                dtm.addRow(rowData);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ItemView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
 }
