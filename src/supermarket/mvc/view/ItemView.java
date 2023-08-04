@@ -253,11 +253,11 @@ public class ItemView extends javax.swing.JFrame {
     }//GEN-LAST:event_itemSaveBtnActionPerformed
 
     private void itemTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTableMouseClicked
-        
+        searchItem();
     }//GEN-LAST:event_itemTableMouseClicked
 
     private void itemUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemUpdateBtnActionPerformed
-        
+        updateItem();
     }//GEN-LAST:event_itemUpdateBtnActionPerformed
 
     private void itemDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeleteBtnActionPerformed
@@ -334,6 +334,44 @@ public class ItemView extends javax.swing.JFrame {
                 Object [] rowData = {item.getItemCode(), item.getItemDesc() + ", " + item.getPackSize(), item.getUnitPrice(), item.getQtyOnHand()};
                 dtm.addRow(rowData);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ItemView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+    
+    private void searchItem() {
+        try {
+            String itemCode = itemTable.getValueAt(itemTable.getSelectedRow(), 0).toString();
+            ItemModel itemModel = itemController.getItem(itemCode);
+            
+            if(itemModel != null) {
+                itemCodeField.setText(itemModel.getItemCode());
+                itemDescField.setText(itemModel.getItemDesc());
+                itemPackSizeField.setText(itemModel.getPackSize());
+                itemUnitPriceField.setText(itemModel.getUnitPrice().toString());
+                itemQtyOnHandField.setText(itemModel.getQtyOnHand().toString());
+            } else {
+                JOptionPane.showMessageDialog(this, "Item Not Found");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ItemView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+    
+    private void updateItem() {
+        ItemModel item = new ItemModel(itemCodeField.getText(), 
+                itemDescField.getText(), 
+                itemPackSizeField.getText(), 
+                Double.valueOf(itemUnitPriceField.getText()), 
+                Integer.valueOf(itemQtyOnHandField.getText()));
+        
+        try {
+            String resp = itemController.updateItem(item);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+            loadAllItems();
         } catch (SQLException ex) {
             Logger.getLogger(ItemView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());

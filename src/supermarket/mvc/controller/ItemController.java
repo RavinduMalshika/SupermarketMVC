@@ -49,4 +49,44 @@ public class ItemController {
         }
         return items;
     }
+    
+    public ItemModel getItem(String itemCode) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        
+        String query = "SELECT * FROM Item WHERE ItemCode = ?";
+        
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, itemCode);
+        
+        ResultSet rst = preparedStatement.executeQuery();
+        
+        while(rst.next()){
+            ItemModel im = new ItemModel(rst.getString(1), 
+                    rst.getString(2), 
+                    rst.getString(3), 
+                    rst.getDouble(4), 
+                    rst.getInt(5));
+            return im;
+        }
+        return null;
+    }
+        
+    public String updateItem(ItemModel item) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        
+        String query = "UPDATE Item SET Description = ?, PackSize = ?, UnitPrice = ?, QtyOnHand = ? WHERE ItemCode = ?";
+        
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, item.getItemDesc());
+        preparedStatement.setString(2, item.getPackSize());
+        preparedStatement.setDouble(3, item.getUnitPrice());
+        preparedStatement.setInt(4, item.getQtyOnHand());
+        preparedStatement.setString(5, item.getItemCode());
+        
+        if(preparedStatement.executeUpdate() > 0){
+            return "Success";
+        } else {
+            return "Fail";
+        }
+    }
 }
