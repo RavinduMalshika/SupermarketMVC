@@ -4,16 +4,24 @@
  */
 package supermarket.mvc.view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import supermarket.mvc.controller.CustomerController;
+import supermarket.mvc.model.CustomerModel;
+
 /**
  *
  * @author ravin
  */
 public class CustomerView extends javax.swing.JFrame {
-
+    private CustomerController customerController;
     /**
      * Creates new form CustomerView
      */
     public CustomerView() {
+        customerController = new CustomerController();
         initComponents();
     }
 
@@ -101,6 +109,11 @@ public class CustomerView extends javax.swing.JFrame {
         custProvinceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Central", "Eastern", "North Central", "North Western", "Northern", "Sabaragamuwa", "Southern", "Uva", "Western" }));
 
         custSaveBtn.setText("Save Customer");
+        custSaveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custSaveBtnActionPerformed(evt);
+            }
+        });
 
         custUpdateBtn.setText("Update Customer");
 
@@ -236,6 +249,10 @@ public class CustomerView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_custTitleComboBoxActionPerformed
 
+    private void custSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custSaveBtnActionPerformed
+        saveCustomer();
+    }//GEN-LAST:event_custSaveBtnActionPerformed
+
    
     
 
@@ -266,4 +283,24 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    private void saveCustomer() {
+        CustomerModel customer = new CustomerModel(custIdField.getText(), 
+                String.valueOf(custTitleComboBox.getSelectedItem()), 
+                custNameField.getText(), 
+                custDobField.getText(), 
+                custAddressField.getText(), 
+                custCityField.getText(), 
+                String.valueOf(custProvinceComboBox.getSelectedItem()), 
+                custPostalCodeField.getText(), 
+                Double.valueOf(custSalaryField.getText()));
+        
+        try {
+            String resp = customerController.saveCustomer(customer);
+            JOptionPane.showMessageDialog(this, resp);
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
 }
