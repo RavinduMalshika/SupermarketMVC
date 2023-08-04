@@ -261,7 +261,7 @@ public class ItemView extends javax.swing.JFrame {
     }//GEN-LAST:event_itemUpdateBtnActionPerformed
 
     private void itemDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDeleteBtnActionPerformed
-        
+        deleteItem();
     }//GEN-LAST:event_itemDeleteBtnActionPerformed
 
    
@@ -369,6 +369,24 @@ public class ItemView extends javax.swing.JFrame {
         
         try {
             String resp = itemController.updateItem(item);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+            loadAllItems();
+        } catch (SQLException ex) {
+            Logger.getLogger(ItemView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+    
+    private void deleteItem() {
+         ItemModel item = new ItemModel(itemCodeField.getText(), 
+                itemDescField.getText(), 
+                itemPackSizeField.getText(), 
+                Double.valueOf(itemUnitPriceField.getText()), 
+                Integer.valueOf(itemQtyOnHandField.getText()));
+        
+        try {
+            String resp = itemController.deleteItem(item);
             JOptionPane.showMessageDialog(this, resp);
             clear();
             loadAllItems();
