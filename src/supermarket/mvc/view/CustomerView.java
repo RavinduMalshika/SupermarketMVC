@@ -122,6 +122,11 @@ public class CustomerView extends javax.swing.JFrame {
         });
 
         custUpdateBtn.setText("Update Customer");
+        custUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custUpdateBtnActionPerformed(evt);
+            }
+        });
 
         custDeleteBtn.setText("Delete Customer");
 
@@ -233,6 +238,11 @@ public class CustomerView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        customerTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customerTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(customerTable);
 
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
@@ -291,6 +301,14 @@ public class CustomerView extends javax.swing.JFrame {
     private void custSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custSaveBtnActionPerformed
         saveCustomer();
     }//GEN-LAST:event_custSaveBtnActionPerformed
+
+    private void customerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerTableMouseClicked
+        searchCustomer();
+    }//GEN-LAST:event_customerTableMouseClicked
+
+    private void custUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custUpdateBtnActionPerformed
+        updateCustomer();
+    }//GEN-LAST:event_custUpdateBtnActionPerformed
 
    
     
@@ -377,6 +395,52 @@ public class CustomerView extends javax.swing.JFrame {
                 Object[] rowData = {customer.getCustId(), customer.getCustTitle() + ". " + customer.getCustName(), customer.getCustAddress() + ", " + customer.getCity(), customer.getSalary(), customer.getPostalCode()};
                 dtm.addRow(rowData);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+    
+    private void searchCustomer() {
+        try {
+            String custId = customerTable.getValueAt(customerTable.getSelectedRow(), 0).toString();
+            CustomerModel customerModel = customerController.getCustomer(custId);
+            
+            if(customerModel != null){
+                custIdField.setText(customerModel.getCustId());
+                custTitleComboBox.setSelectedItem(customerModel.getCustTitle());
+                custNameField.setText(customerModel.getCustName());
+                custDobField.setText(customerModel.getDob());
+                custSalaryField.setText(Double.toString(customerModel.getSalary()));
+                custAddressField.setText(customerModel.getCustAddress());
+                custCityField.setText(customerModel.getCity());
+                custProvinceComboBox.setSelectedItem(customerModel.getProvince());
+                custPostalCodeField.setText(customerModel.getPostalCode());
+            } else {
+                JOptionPane.showMessageDialog(this, "Customer Not Found");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+    
+    private void updateCustomer() {
+        try {
+            CustomerModel customer = new CustomerModel(custIdField.getText(),
+                    String.valueOf(custTitleComboBox.getSelectedItem()),
+                    custNameField.getText(),
+                    custDobField.getText(),
+                    custAddressField.getText(),
+                    custCityField.getText(),
+                    String.valueOf(custProvinceComboBox.getSelectedItem()),
+                    custPostalCodeField.getText(),
+                    Double.valueOf(custSalaryField.getText()));
+            
+            String resp = customerController.updateCustomer(customer);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+            loadAllCustomers();
         } catch (SQLException ex) {
             Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
