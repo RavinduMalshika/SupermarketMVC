@@ -129,6 +129,11 @@ public class CustomerView extends javax.swing.JFrame {
         });
 
         custDeleteBtn.setText("Delete Customer");
+        custDeleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custDeleteBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout formPanelLayout = new javax.swing.GroupLayout(formPanel);
         formPanel.setLayout(formPanelLayout);
@@ -310,6 +315,10 @@ public class CustomerView extends javax.swing.JFrame {
         updateCustomer();
     }//GEN-LAST:event_custUpdateBtnActionPerformed
 
+    private void custDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custDeleteBtnActionPerformed
+        deleteCustomer();
+    }//GEN-LAST:event_custDeleteBtnActionPerformed
+
    
     
 
@@ -445,5 +454,19 @@ public class CustomerView extends javax.swing.JFrame {
             Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
+    }
+    
+    private void deleteCustomer() {
+        try {
+            String custId = custIdField.getText();
+            String resp = customerController.deleteCustomer(custId);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+            loadAllCustomers();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        
     }
 }
