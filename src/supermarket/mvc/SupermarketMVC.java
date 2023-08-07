@@ -8,8 +8,6 @@ import supermarket.mvc.view.OrderView;
 public class SupermarketMVC {
     public static void main(String[] args) {
         new CustomerView().setVisible(true);
-        new ItemView().setVisible(true);
-        new OrderView().setVisible(true);
     }
     
 }
