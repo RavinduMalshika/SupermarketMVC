@@ -81,7 +81,7 @@
                   <Font name="Segoe UI" size="24" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Manage Item"/>
+                <Property name="text" type="java.lang.String" value="Order"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -95,43 +95,45 @@
                       <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="itemQtyOnHandLabel" min="-2" pref="115" max="-2" attributes="0"/>
+                              <Component id="qtyLabel" min="-2" pref="115" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="itemQtyOnHandField" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="qtyField" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="itemPackSizeLabel" max="32767" attributes="0"/>
-                                  <Component id="itemUnitPriceLabel" pref="115" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="discountLabel" min="-2" pref="115" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="discountField" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="addItemBtn" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="itemUnitPriceField" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="itemPackSizeField" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="itemDeleteBtn" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="itemUpdateBtn" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="itemSaveBtn" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="itemCodeLabel" max="32767" attributes="0"/>
-                                      <Component id="itemDescLabel" pref="115" max="32767" attributes="0"/>
+                                      <Component id="orderIdLabel" max="32767" attributes="0"/>
+                                      <Component id="custIdLabel" pref="115" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="itemCodeField" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <Component id="itemDescField" min="-2" pref="350" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="orderIdField" pref="100" max="32767" attributes="0"/>
+                                      <Component id="custIdField" max="32767" attributes="0"/>
                                   </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="searchCustBtn" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="custDataLabel" min="-2" pref="300" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="itemCodeLabel" min="-2" pref="115" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="itemCodeField" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="searchItemBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="itemDataLabel" min="-2" pref="300" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="278" max="32767" attributes="0"/>
+                      <EmptySpace pref="151" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -140,105 +142,108 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="itemCodeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="itemCodeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="orderIdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="orderIdField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="itemDescLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="itemDescField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="custIdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="custIdField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="searchCustBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="custDataLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="itemPackSizeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="itemPackSizeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="itemCodeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="itemCodeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="searchItemBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="itemDataLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="itemUnitPriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="itemUnitPriceField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="qtyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="qtyField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="itemQtyOnHandLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="itemQtyOnHandField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="discountLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="discountField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addItemBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="itemSaveBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="itemUpdateBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="itemDeleteBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
+            <Component class="javax.swing.JLabel" name="orderIdLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Order ID:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="custIdLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Customer ID:"/>
+              </Properties>
+            </Component>
             <Component class="javax.swing.JLabel" name="itemCodeLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Item Code:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="itemDescLabel">
+            <Component class="javax.swing.JLabel" name="qtyLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Description:"/>
+                <Property name="text" type="java.lang.String" value="Quantity:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="itemPackSizeLabel">
+            <Component class="javax.swing.JLabel" name="discountLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Pack Size:"/>
+                <Property name="text" type="java.lang.String" value="Discount:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="itemUnitPriceLabel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Unit Price:"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="orderIdField">
             </Component>
-            <Component class="javax.swing.JLabel" name="itemQtyOnHandLabel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Quantity on Hand:"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="custIdField">
             </Component>
             <Component class="javax.swing.JTextField" name="itemCodeField">
-            </Component>
-            <Component class="javax.swing.JTextField" name="itemDescField">
-            </Component>
-            <Component class="javax.swing.JTextField" name="itemPackSizeField">
-              <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="YYYY-MM-DD"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="itemUnitPriceField">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="itemQtyOnHandField">
-            </Component>
-            <Component class="javax.swing.JButton" name="itemSaveBtn">
+            <Component class="javax.swing.JTextField" name="qtyField">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Save Item"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="discountField">
+            </Component>
+            <Component class="javax.swing.JButton" name="searchCustBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Search"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemSaveBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchCustBtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="itemUpdateBtn">
+            <Component class="javax.swing.JButton" name="searchItemBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Update Item"/>
+                <Property name="text" type="java.lang.String" value="Search"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemUpdateBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchItemBtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="itemDeleteBtn">
+            <Component class="javax.swing.JButton" name="addItemBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Delete Item"/>
+                <Property name="text" type="java.lang.String" value="Add Item"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemDeleteBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addItemBtnActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="custDataLabel">
+            </Component>
+            <Component class="javax.swing.JLabel" name="itemDataLabel">
             </Component>
           </SubComponents>
         </Container>
@@ -252,11 +257,21 @@
                       <Component id="jScrollPane1" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="placeOrderBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="315" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="315" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="placeOrderBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -268,7 +283,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="itemTable">
+                <Component class="javax.swing.JTable" name="orderTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
@@ -280,11 +295,19 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itemTableMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="orderTableMouseClicked"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="placeOrderBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Place Order"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="placeOrderBtnActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
